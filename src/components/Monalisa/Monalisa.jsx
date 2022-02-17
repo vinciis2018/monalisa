@@ -19,6 +19,7 @@ export function Monalisa ({
   screen, monaName
 }){
   const screenId = screen;
+  const monaClass = monaName ? monaName : 'monalisa_slideshow_full';
   const [index, setIndex] = React.useState(0);
   const delay = 2000;
   const timeoutRef = React.useRef(null);
@@ -56,7 +57,7 @@ export function Monalisa ({
 
   return (
     <div>
-      <div className={monaName}>
+      <div className={monaClass}>
         <div className="monalisa_slideshowSlider" style={{transform: `translate3d(${-index * 100}%, 0, 0)`}}>
           {videos.map((video) => (
             <a key={video._id} aria-label="Blinds by Vinciis" href={`https://vblinds.herokuapp.com/video/${video._id}`} target="_blank" rel="noopener noreferrer">
