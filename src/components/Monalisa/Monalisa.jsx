@@ -25,6 +25,8 @@ export function Monalisa ({
   const timeoutRef = React.useRef(null);
   const [videos, setVideos] = React.useState([]);
   const [txId, setTxId] = React.useState('');
+  const [videoTxId, setVideoTxId] = React.useState('');
+
 
   function resetTimeout() {
     if(timeoutRef.current) {
@@ -39,6 +41,7 @@ export function Monalisa ({
         setVideos(data)
         console.log(data)
         data.map((d) => d.thumbnail).map((i) => i.split("https://arweave.net/")[1]).map((txId) => setTxId(txId))
+        data.map((v) => v.video).map((k) => k.split("https://arweave.net/")[1]).map((videoTxId) => setVideoTxId(videoTxId))
         // console.log(data.map(d => d.video).map(i => i.split("https://arweave.net/")[1]))
         resetTimeout()
         timeoutRef.current = setTimeout(() => {
@@ -60,7 +63,7 @@ export function Monalisa ({
       <div className={monaClass}>
         <div className="monalisa_slideshowSlider" style={{transform: `translate3d(${-index * 100}%, 0, 0)`}}>
           {videos.map((video) => (
-            <a key={video._id} aria-label="Blinds by Vinciis" href={`https://vblinds.herokuapp.com/video/${video._id}/${txId}`} target="_blank" rel="noopener noreferrer">
+            <a key={video._id} aria-label="Blinds by Vinciis" href={`https://vblinds.herokuapp.com/video/${video._id}/${videoTxId}`} target="_blank" rel="noopener noreferrer">
               <img 
                 className="monalisa_slide"
                 title="Blinds by Vinciis"
